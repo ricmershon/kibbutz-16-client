@@ -17,11 +17,13 @@
  */
 
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Items from './components/Items'
 import Navigation from './components/Navigation'
 import K19Jumbotron from './components/K19Jumbotron'
 import NewItem from './components/NewItem.js'
 import UpdateItem from './components/UpdateItem.js'
+import News from './components/News.js'
 import { createApolloFetch } from 'apollo-fetch'
 import { Container } from 'react-bootstrap'
 
@@ -35,9 +37,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      memberId: "5e90d959d6a4dc0682a98f99",
       items: [],
       item: {},
-      memberId: '',
       showNewModal: false,
       showUpdateModal: false
     }
@@ -46,6 +48,7 @@ class App extends Component {
     this.handleEditItem = this.handleEditItem.bind(this)
     this.toggleNewModal = this.toggleNewModal.bind(this)
     this.toggleUpdateModal = this.toggleUpdateModal.bind(this)
+    this.handleNewItem = this.handleNewItem.bind(this)
   }
 
   componentDidMount() {
@@ -61,8 +64,7 @@ class App extends Component {
       }
       let response = await fetch(requestBody)
       this.setState({ items: response.data.items })
-      let item = this.state.items[0]
-      console.log(item.member.name);
+      console.log(this.state.items);
     } catch (error) {
       console.error(error);
     }
@@ -94,8 +96,30 @@ class App extends Component {
     }
   }
 
-  // async handleNewItem(item)
-  //   try {}
+  async handleNewItem(item) {
+    console.log('inside handleNewItem');
+    console.log(this.state.items);
+    try {
+      const requestBody = {
+        query: `mutation {
+          addItem(
+            helpType: "${item.helpType}",
+            tag: "${item.tag}",
+            notes: "${item.notes}",
+            memberId: "5e90d959d6a4dc0682a98f99"
+          ) { _id helpType tag notes quantity member { name }}
+        }`
+      }
+      let response = await fetch(requestBody)
+      let newItem = response.data.addItem
+      let currentItems = this.state.items
+      currentItems.push(newItem)
+      this.setState({ items: currentItems })
+      this.setState( {showNewModal: false })
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   toggleUpdateModal(data) {
     this.setState({ showUpdateModal: !this.state.showUpdateModal })
@@ -109,8 +133,10 @@ class App extends Component {
 
   render() {
     return (
+      <Router>
         <>
           <Navigation/>
+          <Route path='/news' component={News}/>
           <K19Jumbotron
             handleEditItem={ this.handleEditItem }
             toggleNewModal= { this.toggleNewModal }
@@ -126,7 +152,6 @@ class App extends Component {
           {
             this.state.showNewModal ?
             (<NewItem
-              item={ this.state.item }
               showNewModal={ this.state.showNewModal }
               handleNewItem={ this.handleNewItem }
             />) : ''
@@ -142,6 +167,7 @@ class App extends Component {
             />) : ''
           }
         </>
+    </Router>
     );
   }
 }

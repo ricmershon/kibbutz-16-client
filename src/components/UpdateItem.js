@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import 'bootstrap/dist/css/bootstrap.min.css'
-import { Modal, Form, Col, Button } from 'react-bootstrap'
+import { Modal, Form } from 'react-bootstrap'
 
 class UpdateItem extends Component {
   constructor(props) {

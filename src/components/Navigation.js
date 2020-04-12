@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Navbar,
   Nav,
@@ -41,10 +42,10 @@ class Navigation extends Component {
                 </OverlayTrigger>
             </Nav>
             <Nav className="ml-auto">
-              <Nav.Link className="mr-3" href="#home">Login</Nav.Link>
+              <Nav.Link className="mr-2" href="#home">Login</Nav.Link>
             </Nav>
             <Form inline>
-              <Button size="sm" variant="outline-success" variant="secondary">Join Us</Button>
+              <Button size="sm" variant="secondary">Join Us</Button>
             </Form>
           </Navbar.Collapse>
         </Navbar>

@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 // import 'bootstrap/dist/css/bootstrap.min.css'
-import { Modal, Form, Col, Button } from 'react-bootstrap'
+import { Modal, Form, Button } from 'react-bootstrap'
 
 class NewItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showModal: true,
-      helpType: '',
-      tag: '',
+      helpType: 'offering help',
+      tag: 'Baby Supplies',
       notes: '',
-      quantity: '',
-      memberId: '',
-      memberName: 'Ric Mershon'
+      quantity: 0
     }
     this.handleClose = this.handleClose.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -30,7 +28,6 @@ class NewItem extends Component {
     } else {
       this.setState({ [event.currentTarget.id]: event.currentTarget.value })
     }
-    console.log(this.state);
   }
 
   handleSubmit(event) {
@@ -40,7 +37,9 @@ class NewItem extends Component {
       helpType: this.state.helpType,
       tag: this.state.tag,
       notes: this.state.notes,
+      quantity: this.state.quantity
     }
+    console.log(item);
     this.props.handleNewItem(item)
   }
 
@@ -70,7 +69,7 @@ class NewItem extends Component {
                 rows="5"
                 type="text"
                 name="notes"
-                placeHolder="What's on your mind?"
+                placeholder="What's on your mind?"
                 onChange={ this.handleChange }
               />
             </Form.Group>

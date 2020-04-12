@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Container, CardColumns } from 'react-bootstrap'
 import Item from './Item.js'
 
 class Items extends Component {
@@ -7,9 +6,10 @@ class Items extends Component {
     return (
       <>
         {
-          this.props.items.map((item, index) => {
+          this.props.items.reverse().map((item, index) => {
             return(
               <Item
+                key={ this.props.items[index]._id }
                 toggleUpdateModal={ this.props.toggleUpdateModal }
                 item={ item }
                 index={ index }
