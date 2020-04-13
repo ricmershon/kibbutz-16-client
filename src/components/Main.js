@@ -7,14 +7,14 @@ import { createApolloFetch } from 'apollo-fetch'
 import { Container } from 'react-bootstrap'
 
 const fetch = createApolloFetch({
-  uri: `http://localhost:3000/graphql` || process.env.APOLLO_FETCH
+  uri: `https://kibbutz-19-api.herokuapp.com/graphql` || process.env.APOLLO_FETCH
 })
 
 class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      memberId: "5e90d959d6a4dc0682a98f99",
+      memberId: "5e94947d1559150017bb1349",
       items: [],
       item: {},
       showNewModal: false,
