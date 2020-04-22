@@ -1,3 +1,18 @@
+/*
+ ===============================================================================
+ ===============================================================================
+ =
+ = Final project: Kibbutz-19 Client
+ = Module: Navigation.js
+ = Created: April 2020
+ = Created by: Ric Mershon
+ =
+ = Description: Navigation bar and functionality.
+ =
+ ===============================================================================
+ ===============================================================================
+ */
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {

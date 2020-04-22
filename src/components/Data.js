@@ -35,22 +35,22 @@ class Data extends Component {
           borderColor: 'rgba(250,0,0,.5)',
           backgroundColor: 'rgba(250,0,0,.5)',
           fill: false,
-          label: 'GA Deaths',
-          data: []
-        },
-        {
-          borderColor: 'rgba(0,0,250,.5)',
-          backgroundColor: 'rgba(0,0,250,.5)',
-          fill: false,
-          label: 'GA Positive Tests',
+          label: 'Daily number of Cases',
           data: []
         }
+        // {
+        //   borderColor: 'rgba(0,0,250,.5)',
+        //   backgroundColor: 'rgba(0,0,250,.5)',
+        //   fill: false,
+        //   label: 'GA Positive Tests',
+        //   data: []
+        // }
       ]
     }
     data.forEach(month => {
       chartData.labels.unshift(month.date.toString())
-      chartData.datasets[0].data.unshift(month.death)
-      chartData.datasets[1].data.unshift(month.positive)
+      chartData.datasets[0].data.unshift(month.positiveIncrease)
+      // chartData.datasets[1].data.unshift(month.positive)
     })
     return chartData
   }

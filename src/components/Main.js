@@ -1,4 +1,17 @@
-import React, { Component } from 'react'
+/*
+ ===============================================================================
+ ===============================================================================
+ =
+ = Final project: Kibbutz-19 Client
+ = Module: Main.js
+ = Created: April 2020
+ = Created by: Ric Mershon
+ =
+ = Description: Main page functionality. Displays items.
+ =
+ ===============================================================================
+ ===============================================================================
+ */import React, { Component } from 'react'
 import K19Jumbotron from './K19Jumbotron'
 import Items from './Items'
 import NewItem from './NewItem'
