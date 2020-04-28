@@ -126,7 +126,7 @@ class Main extends Component {
           handleEditItem={ this.handleEditItem }
           toggleNewModal= { this.toggleNewModal }
         />
-        <Container className="">
+      <Container className="mx-5">
           <h5 className="">Latest Posts</h5>
           <Items
             items={ this.state.items }
