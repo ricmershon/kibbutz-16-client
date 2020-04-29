@@ -15,12 +15,7 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Navbar,
-  Nav,
-  Form,
-  Button
-} from 'react-bootstrap'
+import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 
 class Navigation extends Component {
   constructor (props) {
@@ -34,7 +29,7 @@ class Navigation extends Component {
     return(
       <>
         <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
-          <Navbar.Brand href="#home">Kibbutz-19</Navbar.Brand>
+          <Link to='/'><Navbar.Brand ref='#home'>Kibbutz-19</Navbar.Brand></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">

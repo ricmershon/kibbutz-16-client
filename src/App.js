@@ -31,7 +31,7 @@ const App = () => {
         <Route path='/news' component={News}/>
         <Route path='/data' component={ ChartData }/>
       </>
-  </Router>
+    </Router>
   );
 }
 
