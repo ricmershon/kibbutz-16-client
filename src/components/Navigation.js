@@ -18,13 +18,6 @@ import { Link } from 'react-router-dom'
 import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 
 class Navigation extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      showTip: false
-    }
-  }
-
   render() {
     return(
       <>

@@ -3,12 +3,19 @@ import axios from 'axios'
 import { Jumbotron, Container } from 'react-bootstrap'
 import Chart from 'chart.js'
 import StatesArray from './StatesArray'
-import ChartForm from './ChartForm'
+import DataForm from './DataForm'
 
 const API_BASE = 'https://covidtracking.com/api'
 const API_US = '/us/daily'
 const API_STATE = '/states/daily?state='
 const API_STATE_INFO = '/states/info?state='
+
+/*
+ ===============================================================================
+ = CHARTS hashes chartType value to a key in the JSON object returned from
+ = the API.
+ ===============================================================================
+ */
 
 const CHARTS = {
   DAILY_NEW_CASES: "positiveIncrease",
@@ -16,6 +23,12 @@ const CHARTS = {
   TOTAL_CASES: "positive",
   TOTAL_FATALITIES: "death"
 }
+
+/*
+ ===============================================================================
+ = CHART_TITLES hashes chartType value to string for chart title.
+ ===============================================================================
+ */
 
 const CHART_TITLES = {
   DAILY_NEW_CASES: "Daily New Cases",
@@ -49,14 +62,13 @@ const chartDataReducer = (state, action) => {
   }
 }
 
-const ChartData = () => {
+const Data = () => {
 
   const [chartType, setChartType] = React.useState('DAILY_NEW_CASES')
   const [chartRegion, setChartRegion] = React.useState('us')
   const [apiUrl, setApiUrl] = React.useState(`${API_BASE}${API_US}`)
   const [chartData, dispatchChartData] = React.useReducer(
-    chartDataReducer,
-    { data: [], isLoading: false, isError: false }
+    chartDataReducer, { data: [], isLoading: false, isError: false }
   )
 
   const handleFetchData = React.useCallback(async () => {
@@ -64,7 +76,7 @@ const ChartData = () => {
     dispatchChartData ({ type: 'DATA_FETCH_INIT' })
     try {
       const response = await axios.get(apiUrl)
-      dispatchChartData({
+      await dispatchChartData({
         type: 'DATA_FETCH_SUCCESS',
         payload: response.data
       })
@@ -130,13 +142,12 @@ const ChartData = () => {
     setChartType(chartType)
   }
 
-  const handleRegionChange = async (event) => {
-    await setChartRegion(event.currentTarget.value)
-    handleSearchSubmit(event)
+  const handleRegionChange =  (event) => {
+    setChartRegion(event.currentTarget.value)
   }
 
   const handleSearchSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     setApiUrl(`${API_BASE}${API_STATE}${chartRegion}`)
   }
 
@@ -155,7 +166,7 @@ const ChartData = () => {
         </Container>
       </Jumbotron>
 
-      <ChartForm
+      <DataForm
         onSearchSubmit={handleSearchSubmit}
         onRegionChange={handleRegionChange}
         onChartChange={handleChartChange}
@@ -167,4 +178,4 @@ const ChartData = () => {
 
 }
 
-export default ChartData
+export default Data

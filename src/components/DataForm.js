@@ -3,7 +3,7 @@ import { Container, Form, Col, Button } from 'react-bootstrap'
 import StatesArray from './StatesArray'
 
 
-const ChartForm = ({onSearchSubmit, onRegionChange, onChartChange, type }) => (
+const DataForm = ({onSearchSubmit, onRegionChange, onChartChange, type }) => (
 
   <Container>
     <Form onSubmit={ onSearchSubmit }>
@@ -80,4 +80,4 @@ const ChartForm = ({onSearchSubmit, onRegionChange, onChartChange, type }) => (
   </Container>
 )
 
-export default ChartForm
+export default DataForm

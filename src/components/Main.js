@@ -11,7 +11,9 @@
  =
  ===============================================================================
  ===============================================================================
- */import React, { Component } from 'react'
+ */
+
+import React, { Component } from 'react'
 import K19Jumbotron from './K19Jumbotron'
 import Items from './Items'
 import NewItem from './NewItem'
@@ -126,7 +128,7 @@ class Main extends Component {
           handleEditItem={ this.handleEditItem }
           toggleNewModal= { this.toggleNewModal }
         />
-      <Container className="mx-5">
+        <Container className="mx-5">
           <h5 className="">Latest Posts</h5>
           <Items
             items={ this.state.items }
