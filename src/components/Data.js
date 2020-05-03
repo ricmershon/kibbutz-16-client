@@ -99,12 +99,24 @@ const Data = () => {
     handleFetchData()
   }, [handleFetchData])
 
+  /*
+   ===============================================================================
+   = Converts date received from API to a more readable label.
+   = e.g., 20200401 => 'Apr 01'
+   ===============================================================================
+   */
+
   const convertDateToString = (date) => {
-    const dateString = date.toString()
-    const parsedDateString = new Date(
-      dateString.slice(0, 4), dateString.slice(4,6)-1, dateString.slice(-2)
-    ).toDateString().substring(4)
-    return parsedDateString.substring(0, parsedDateString.length-5)
+    const rawString = date.toString()     // Convert to raw string
+
+    const dateString = new Date(          // Create JS Date object
+      rawString.slice(0, 4),              // Year
+      rawString.slice(4, 6) - 1,          // Month
+      rawString.slice(-2)                 // Day
+    ).toDateString().substring(4)         // Convert to date string and
+                                          // remove day of the week.
+    return dateString.substring(0, dateString.length-5)
+                                          // Return string with year removed
   }
 
   const prepareData = (data) => {
@@ -133,7 +145,7 @@ const Data = () => {
       chartData.labels.unshift(convertDateToString(data[i].date))
       chartData.datasets[0].data.unshift(data[i][CHARTS[chartType]])
     }
-    
+
     return chartData
   }
 
