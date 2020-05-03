@@ -1,19 +1,23 @@
 import React from 'react'
 import axios from 'axios'
+
+
 import { Jumbotron, Container } from 'react-bootstrap'
 import Chart from 'chart.js'
 import StatesArray from './StatesArray'
 import DataForm from './DataForm'
 
-const API_BASE = 'https://covidtracking.com/api'
-const API_US = '/us/daily'
-const API_STATE = '/states/daily?state='
-const API_STATE_INFO = '/states/info?state='
+const API_BASE = 'https://covidtracking.com/api/v1'
+const API_STATE = '/states/'
+const API_US = '/us'
+const API_POSTFIX = '/daily.json'
+
+
 
 /*
  ===============================================================================
- = CHARTS hashes chartType value to a key in the JSON object returned from
- = the API.
+ = CHARTS hashes chartType value to a key for a key/value pair in the JSON
+ = object returned from the API.
  ===============================================================================
  */
 
@@ -37,8 +41,7 @@ const CHART_TITLES = {
   TOTAL_FATALITIES: "Total Fatalities"
 }
 
-const chartDataReducer = (state, action) => {
-  console.log(action.type);
+const covidDataReducer = (state, action) => {
   switch (action.type) {
     case 'DATA_FETCH_INIT':
       return {
@@ -55,7 +58,9 @@ const chartDataReducer = (state, action) => {
       }
     case 'DATA_FETCH_FAILURE':
       return {
-        ...state, isLoading: false, isError: true
+        ...state,
+        isLoading: false,
+        isError: true
       }
     default:
       throw new Error()
@@ -66,32 +71,41 @@ const Data = () => {
 
   const [chartType, setChartType] = React.useState('DAILY_NEW_CASES')
   const [chartRegion, setChartRegion] = React.useState('us')
-  const [apiUrl, setApiUrl] = React.useState(`${API_BASE}${API_US}`)
-  const [chartData, dispatchChartData] = React.useReducer(
-    chartDataReducer, { data: [], isLoading: false, isError: false }
+  const [apiUrl, setApiUrl] = React.useState(`${API_BASE}${API_US}${API_POSTFIX}`)
+  const [covidData, dispatchCovidData] = React.useReducer(
+    covidDataReducer, { data: [], isLoading: false, isError: false }
   )
 
   const handleFetchData = React.useCallback(async () => {
     console.log(apiUrl);
-    dispatchChartData ({ type: 'DATA_FETCH_INIT' })
+    dispatchCovidData ({ type: 'DATA_FETCH_INIT' })
     try {
       const response = await axios.get(apiUrl)
-      await dispatchChartData({
+      await dispatchCovidData({
         type: 'DATA_FETCH_SUCCESS',
         payload: response.data
       })
-      console.log('Response data ', response.data);
-      console.log('Chart Data ', chartData.data);
       const dataToChart = await prepareData(response.data)
       await createChart(dataToChart)
     } catch (error) {
-      dispatchChartData({ type: 'DATA_FETCH_FAILURE'})
+      dispatchCovidData({
+        type: 'DATA_FETCH_FAILURE',
+        payload: console.error
+      })
     }
   }, [apiUrl, chartType])
 
   React.useEffect(() => {
     handleFetchData()
   }, [handleFetchData])
+
+  const convertDateToString = (date) => {
+    const dateString = date.toString()
+    const parsedDateString = new Date(
+      dateString.slice(0, 4), dateString.slice(4,6)-1, dateString.slice(-2)
+    ).toDateString().substring(4)
+    return parsedDateString.substring(0, parsedDateString.length-5)
+  }
 
   const prepareData = (data) => {
     const chartTitle = CHART_TITLES[chartType]
@@ -107,18 +121,26 @@ const Data = () => {
         }
       ]
     }
-    const chartField = CHARTS[chartType]
-    data.forEach(month => {
-      chartData.labels.unshift(month.date.toString())
-      chartData.datasets[0].data.unshift(month[chartField])
-    })
+
+    const daysToChart = data.length < 60 ? data.length : 60;    // Chart up to 60 days
+    const chartField = CHARTS[chartType];                       // Hash the field to chart
+
+    //
+    // Move data received from API to chartData
+    //
+
+    for (let i = 0; i < daysToChart; i++) {
+      chartData.labels.unshift(convertDateToString(data[i].date))
+      chartData.datasets[0].data.unshift(data[i][CHARTS[chartType]])
+    }
+    
     return chartData
   }
 
   const createChart = (data) => {
-    const chartTitle = StatesArray[   // Use the apiKey to find the region name
+    const chartTitle = StatesArray[   // Use the abbrev to find the region name
       StatesArray.findIndex(
-        state => state.apiKey === chartRegion
+        state => state.abbrev === chartRegion
       )
     ].name.toUpperCase();
     const ctx = document.querySelector("#chart-canvas")
@@ -148,7 +170,7 @@ const Data = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    setApiUrl(`${API_BASE}${API_STATE}${chartRegion}`)
+    setApiUrl(`${API_BASE}${API_STATE}${chartRegion}${API_POSTFIX}`)
   }
 
   return(
@@ -157,11 +179,12 @@ const Data = () => {
       <Jumbotron className="pb-0 mb-4" bg="white">
         <h3 className="mx-auto mt-3">Covid-19 Data</h3>
         <Container>
-          { chartData.isError && <p>Something went wrong...</p> }
+          { covidData.isLoading }
+          { covidData.isError && <p>Something went wrong...</p> }
           <canvas
             id="chart-canvas"
             width="250"
-            height="100">
+            height="150">
           </canvas>
         </Container>
       </Jumbotron>

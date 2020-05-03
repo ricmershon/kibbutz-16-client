@@ -1,222 +1,222 @@
 module.exports = [
   {
     "name": "United States",
-    "apiKey": "us"
+    "abbrev": "us"
   },
   {
     "name": "Alabama",
-    "apiKey": "AL"
+    "abbrev": "AL"
   },
   {
     "name": "Alaska",
-    "apiKey": "AK"
+    "abbrev": "AK"
   },
   {
     "name": "Arizona",
-    "apiKey": "AZ"
+    "abbrev": "AZ"
   },
   {
     "name": "Arkansas",
-    "apiKey": "AR"
+    "abbrev": "AR"
   },
   {
     "name": "California",
-    "apiKey": "CA"
+    "abbrev": "CA"
   },
   {
     "name": "Colorado",
-    "apiKey": "CO"
+    "abbrev": "CO"
   },
   {
     "name": "Connecticut",
-    "apiKey": "CT"
+    "abbrev": "CT"
   },
   {
     "name": "Delaware",
-    "apiKey": "DE"
+    "abbrev": "DE"
   },
   {
     "name": "District Of Columbia",
-    "apiKey": "DC"
+    "abbrev": "DC"
   },
   {
     "name": "Florida",
-    "apiKey": "FL"
+    "abbrev": "FL"
   },
   {
     "name": "Georgia",
-    "apiKey": "GA"
+    "abbrev": "GA"
   },
   {
     "name": "Guam",
-    "apiKey": "GU"
+    "abbrev": "GU"
   },
   {
     "name": "Hawaii",
-    "apiKey": "HI"
+    "abbrev": "HI"
   },
   {
     "name": "Idaho",
-    "apiKey": "ID"
+    "abbrev": "ID"
   },
   {
     "name": "Illinois",
-    "apiKey": "IL"
+    "abbrev": "IL"
   },
   {
     "name": "Indiana",
-    "apiKey": "IN"
+    "abbrev": "IN"
   },
   {
     "name": "Iowa",
-    "apiKey": "IA"
+    "abbrev": "IA"
   },
   {
     "name": "Kansas",
-    "apiKey": "KS"
+    "abbrev": "KS"
   },
   {
     "name": "Kentucky",
-    "apiKey": "KY"
+    "abbrev": "KY"
   },
   {
     "name": "Louisiana",
-    "apiKey": "LA"
+    "abbrev": "LA"
   },
   {
     "name": "Maine",
-    "apiKey": "ME"
+    "abbrev": "ME"
   },
   {
     "name": "Maryland",
-    "apiKey": "MD"
+    "abbrev": "MD"
   },
   {
     "name": "Massachusetts",
-    "apiKey": "MA"
+    "abbrev": "MA"
   },
   {
     "name": "Michigan",
-    "apiKey": "MI"
+    "abbrev": "MI"
   },
   {
     "name": "Minnesota",
-    "apiKey": "MN"
+    "abbrev": "MN"
   },
   {
     "name": "Mississippi",
-    "apiKey": "MS"
+    "abbrev": "MS"
   },
   {
     "name": "Missouri",
-    "apiKey": "MO"
+    "abbrev": "MO"
   },
   {
     "name": "Montana",
-    "apiKey": "MT"
+    "abbrev": "MT"
   },
   {
     "name": "Nebraska",
-    "apiKey": "NE"
+    "abbrev": "NE"
   },
   {
     "name": "Nevada",
-    "apiKey": "NV"
+    "abbrev": "NV"
   },
   {
     "name": "New Hampshire",
-    "apiKey": "NH"
+    "abbrev": "NH"
   },
   {
     "name": "New Jersey",
-    "apiKey": "NJ"
+    "abbrev": "NJ"
   },
   {
     "name": "New Mexico",
-    "apiKey": "NM"
+    "abbrev": "NM"
   },
   {
     "name": "New York",
-    "apiKey": "NY"
+    "abbrev": "NY"
   },
   {
     "name": "North Carolina",
-    "apiKey": "NC"
+    "abbrev": "NC"
   },
   {
     "name": "North Dakota",
-    "apiKey": "ND"
+    "abbrev": "ND"
   },
   {
     "name": "Northern Mariana Islands",
-    "apiKey": "MP"
+    "abbrev": "MP"
   },
   {
     "name": "Ohio",
-    "apiKey": "OH"
+    "abbrev": "OH"
   },
   {
     "name": "Oklahoma",
-    "apiKey": "OK"
+    "abbrev": "OK"
   },
   {
     "name": "Oregon",
-    "apiKey": "OR"
+    "abbrev": "OR"
   },
   {
     "name": "Pennsylvania",
-    "apiKey": "PA"
+    "abbrev": "PA"
   },
   {
     "name": "Rhode Island",
-    "apiKey": "RI"
+    "abbrev": "RI"
   },
   {
     "name": "South Carolina",
-    "apiKey": "SC"
+    "abbrev": "SC"
   },
   {
     "name": "South Dakota",
-    "apiKey": "SD"
+    "abbrev": "SD"
   },
   {
     "name": "Tennessee",
-    "apiKey": "TN"
+    "abbrev": "TN"
   },
   {
     "name": "Texas",
-    "apiKey": "TX"
+    "abbrev": "TX"
   },
   {
     "name": "Utah",
-    "apiKey": "UT"
+    "abbrev": "UT"
   },
   {
     "name": "Vermont",
-    "apiKey": "VT"
+    "abbrev": "VT"
   },
   {
     "name": "Virgin Islands",
-    "apiKey": "VI"
+    "abbrev": "VI"
   },
   {
     "name": "Virginia",
-    "apiKey": "VA"
+    "abbrev": "VA"
   },
   {
     "name": "Washington",
-    "apiKey": "WA"
+    "abbrev": "WA"
   },
   {
     "name": "West Virginia",
-    "apiKey": "WV"
+    "abbrev": "WV"
   },
   {
     "name": "Wisconsin",
-    "apiKey": "WI"
+    "abbrev": "WI"
   },
   {
     "name": "Wyoming",
-    "apiKey": "WY"
+    "abbrev": "WY"
   }
 ]

@@ -22,7 +22,7 @@ class Navigation extends Component {
     return(
       <>
         <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
-          <Link to='/'><Navbar.Brand ref='#home'>Kibbutz-19</Navbar.Brand></Link>
+          <Link to='/'><Navbar.Brand>Kibbutz-19</Navbar.Brand></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">

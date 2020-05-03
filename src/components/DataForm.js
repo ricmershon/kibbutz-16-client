@@ -19,8 +19,8 @@ const DataForm = ({onSearchSubmit, onRegionChange, onChartChange, type }) => (
           {
             StatesArray.map((region) =>
               <option
-                key={ region.apiKey }
-                value={ region.apiKey }
+                key={ region.abbrev }
+                value={ region.abbrev }
               >
                 { region.name }
               </option>
