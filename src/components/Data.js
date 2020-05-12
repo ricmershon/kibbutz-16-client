@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 
-
 import { Jumbotron, Container } from 'react-bootstrap'
 import Chart from 'chart.js'
 import StatesArray from './StatesArray'
@@ -11,8 +10,6 @@ const API_BASE = 'https://covidtracking.com/api/v1'
 const API_STATE = '/states/'
 const API_US = '/us'
 const API_POSTFIX = '/daily.json'
-
-
 
 /*
  ===============================================================================
@@ -35,10 +32,10 @@ const CHARTS = {
  */
 
 const CHART_TITLES = {
-  DAILY_NEW_CASES: "Daily New Cases",
-  DAILY_FATALITIES: "Daily Fatalities",
-  TOTAL_CASES: "Total Cases",
-  TOTAL_FATALITIES: "Total Fatalities"
+  DAILY_NEW_CASES: "DAILY NEW CASES",
+  DAILY_FATALITIES: "DAILY FATALITIES",
+  TOTAL_CASES: "TOTAL CASES",
+  TOTAL_FATALITIES: "TOTAL FATALITIES"
 }
 
 const covidDataReducer = (state, action) => {
@@ -70,11 +67,37 @@ const covidDataReducer = (state, action) => {
 const Data = () => {
 
   const [chartType, setChartType] = React.useState('DAILY_NEW_CASES')
+  const [chartData, setChartData] = React.useState({
+    type: 'line',
+    options: {
+      title: {
+        display: true,
+        text: '',
+        position: 'bottom',
+        onHover: null,
+        onClick: null
+      }
+    },
+    data: {
+      labels: [],
+      datasets: [
+        {
+          borderColor: 'rgba(250,0,0,.5)',
+          backgroundColor: 'rgba(250,0,0,.5)',
+          fill: false,
+          label: '',
+          data: []
+        }
+      ]
+    }
+  })
   const [chartRegion, setChartRegion] = React.useState('us')
   const [apiUrl, setApiUrl] = React.useState(`${API_BASE}${API_US}${API_POSTFIX}`)
   const [covidData, dispatchCovidData] = React.useReducer(
     covidDataReducer, { data: [], isLoading: false, isError: false }
   )
+  
+  const ref = React.useRef()
 
   const handleFetchData = React.useCallback(async () => {
     console.log(apiUrl);
@@ -134,14 +157,11 @@ const Data = () => {
       ]
     }
 
-    const daysToChart = data.length < 60 ? data.length : 60;    // Chart up to 60 days
-    const chartField = CHARTS[chartType];                       // Hash the field to chart
-
     //
-    // Move data received from API to chartData
+    // Chart up to 60 days of data depending on what's available.
     //
 
-    for (let i = 0; i < daysToChart; i++) {
+    for (let i = 0; i < (data.length < 60 ? data.length : 60); i++) {
       chartData.labels.unshift(convertDateToString(data[i].date))
       chartData.datasets[0].data.unshift(data[i][CHARTS[chartType]])
     }
@@ -155,8 +175,10 @@ const Data = () => {
         state => state.abbrev === chartRegion
       )
     ].name.toUpperCase();
-    const ctx = document.querySelector("#chart-canvas")
-    const dataChart = new Chart(ctx, {
+
+    const chartRef = ref.current.getContext('2d')
+
+    new Chart(chartRef, {
       type: 'line',
       data: data,
       options: {
@@ -169,7 +191,6 @@ const Data = () => {
         }
       }
     })
-    return dataChart
   }
 
   const handleChartChange = (chartType) => {
@@ -194,7 +215,7 @@ const Data = () => {
           { covidData.isLoading }
           { covidData.isError && <p>Something went wrong...</p> }
           <canvas
-            id="chart-canvas"
+            ref={ref}
             width="250"
             height="150">
           </canvas>

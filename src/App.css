@@ -46,15 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .jumbotron {
-  /* background: url('mateusz-cudo-GiWLj3Mfwo0-unsplash.jpg') no-repeat center center fixed; */
-  background: white;
-  /* background: url('benjamin-davies-Zm2n2O7Fph4-unsplash.jpg') no-repeat center center fixed; */
-  /* background: url('johny-goerend-xaSM1R157vI-unsplash.jpg') no-repeat center center ; */
-  /* background: url('raquel-pedrotti-hB-Vwbyxr9U-unsplash.jpg') no-repeat center center fixed; */
-  /* background: url('gaetano-cessati-d91HDmCta0k-unsplash.jpg') no-repeat center center fixed; */
-  /* background: url('karsten-wurth-UbGYPMbMYP8-unsplash.jpg') no-repeat center center fixed; */
-  /* background: url('jake-gard-CetB-bTDBtY-unsplash.jpg') no-repeat center center; */
-  /* background: url('loren-gu-IG1EdbuYCy8-unsplash.jpg') no-repeat center center; */
+    background: white;
    -webkit-background-size: cover;
    -moz-background-size: cover;
    background-size: cover;
