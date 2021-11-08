@@ -16,7 +16,7 @@
     "bootstrap": "^4.4.1",
     "chart": "^0.1.2",
     "chart.js": "^2.9.3",
-    "graphiql": "^0.17.5",
+    "graphiql": "^1.4.7",
     "graphql": "^15.0.0",
     "react": "^16.13.1",
     "react-apollo": "^3.1.4",
